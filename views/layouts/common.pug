@@ -13,6 +13,7 @@ html
                     a.nav-item.nav-link.active(href='#') Home
                     a.nav-item.nav-link(href='#') Products
                     a.nav-item.nav-link(href='/users?page=1') Users
+            p= user ? user.username : ''
 
     .container
         block content
