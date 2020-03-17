@@ -7,7 +7,7 @@ var productRouter = require('./routes/products/product.router');
 var userRouter = require('./routes/users/user.router');
 
 // Khai bao cho pug
-app.set('view pug', 'pug');
+app.set('view engine', 'pug');
 app.set('views', './views');
 
 // Khai bao su dung static file
@@ -24,6 +24,10 @@ app.get('/', function(req, res){
 // Khai bao router
 app.use('/users', userRouter);
 app.use('/products', productRouter);
+
+app.get('/login', function(req, res){
+    res.render('login/login');
+});
 
 //Khoi dong Server
 app.listen(3000, function(){

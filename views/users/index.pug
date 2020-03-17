@@ -1,0 +1,42 @@
+extends ../layouts/common 
+block content  
+    form(action="/", method="get", class="flex-2")
+        input(type="text" name="q")
+        button Search 
+    a(href="#") Create User
+    table(class="table")
+        thead
+            tr
+                th(scope='col') STT
+                th(scope='col') Name
+                th(scope='col') Phone Number
+                th(scope='col') 
+                th(scope='col') 
+                th(scope='col')
+
+            tbody
+                each user in users
+                    tr
+                        th(scope='row')= (users.indexOf(user) + 1) + (indexPage-1)*perPage
+                        td= user.name
+                        td= user.phone
+                        td
+                            a(href="#") View
+                        td
+                            a(href="#") Edit
+                        td
+                            a(href="#") Delete
+    nav(aria-label='Page navigation example' class="container")
+        ul(class="pagination justify-content-center")
+            li.page-item
+            a.page-link(href='#', aria-label='Previous')
+                span(aria-hidden='true') &laquo;
+            li.page-item
+            a.page-link(href='#')= indexPage - 1
+            li.page-item
+            a.page-link(href='#')= indexPage
+            li.page-item
+            a.page-link(href='#')= indexPage + 1
+            li.page-item
+            a.page-link(href='#', aria-label='Next')
+                span(aria-hidden='true') &raquo;
