@@ -18,7 +18,7 @@ block content
                 each user in users
                     tr
                         th(scope='row')= (users.indexOf(user) + 1) + (indexPage-1)*perPage
-                        td= user.name
+                        td= user.first_name
                         td= user.phone
                         td
                             a(href="#") View
@@ -28,15 +28,36 @@ block content
                             a(href="#") Delete
     nav(aria-label='Page navigation example' class="container")
         ul(class="pagination justify-content-center")
-            li.page-item
-            a.page-link(href='#', aria-label='Previous')
-                span(aria-hidden='true') &laquo;
-            li.page-item
-            a.page-link(href='#')= indexPage - 1
-            li.page-item
-            a.page-link(href='#')= indexPage
-            li.page-item
-            a.page-link(href='#')= indexPage + 1
-            li.page-item
-            a.page-link(href='#', aria-label='Next')
-                span(aria-hidden='true') &raquo;
+            if indexPage === 1
+                li.page-item
+                a.page-link(href=`/users?page=${indexPage}`)= indexPage
+                li.page-item
+                a.page-link(href=`/users?page=${indexPage + 1}`)= indexPage + 1
+                li.page-item
+                a.page-link(href=`/users?page=${indexPage + 2}`)= indexPage + 2
+                li.page-item
+                a.page-link(href=`/users?page=${indexPage + 1}`, aria-label='Next')
+                    span(aria-hidden='true') &raquo;
+            else if indexPage === lastPage
+                li.page-item
+                a.page-link(href=`/users?page=${indexPage -1}`, aria-label='Previous')
+                    span(aria-hidden='true') &laquo;
+                li.page-item
+                a.page-link(href=`/users?page=${indexPage-2}`)= indexPage - 2
+                li.page-item
+                a.page-link(href=`/users?page=${indexPage-1}`)= indexPage - 1
+                li.page-item
+                a.page-link(href=`/users?page=${indexPage}`)= indexPage
+            else 
+                li.page-item
+                a.page-link(href=`/users?page=${indexPage -1}`, aria-label='Previous')
+                    span(aria-hidden='true') &laquo;
+                li.page-item
+                a.page-link(href=`/users?page=${indexPage-1}`)= indexPage - 1
+                li.page-item
+                a.page-link(href=`/users?page=${indexPage}`)= indexPage 
+                li.page-item
+                a.page-link(href=`/users?page=${indexPage+ 1}`)= indexPage + 1
+                li.page-item
+                a.page-link(href=`/users?page=${indexPage+ 1}`, aria-label='Next')
+                    span(aria-hidden='true') &raquo;

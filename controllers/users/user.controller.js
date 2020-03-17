@@ -6,9 +6,12 @@ module.exports.listUser = function(req, res){
     var indexPage = parseInt(req.query.page);
     var begin = (indexPage-1)*perPage;
     var end = perPage*indexPage;
+    var dbUsers = db.get('users').value();
+    var lastPage = Math.ceil(dbUsers.length/perPage);
     res.render('users/index', {
-        users: db.get('users').value().slice(begin, end),
+        users: dbUsers.slice(begin, end),
         indexPage: indexPage,
-        perPage: perPage
+        perPage: perPage, 
+        lastPage: lastPage
     });
 };
